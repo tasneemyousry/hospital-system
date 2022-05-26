@@ -98,14 +98,14 @@ class LoginPage:
 
 
 
-        # =========== Sign Up ==================================================
-        self.sign_label = Label(self.window, text='No account yet?', font=("yu gothic ui", 11, "bold"),
-                                relief=FLAT, borderwidth=0, fg='black',bg='#ffffff')
-        self.sign_label.place(x=850, y=640)
+        # # =========== Sign Up ==================================================
+        # self.sign_label = Label(self.window, text='No account yet?', font=("yu gothic ui", 11, "bold"),
+        #                         relief=FLAT, borderwidth=0, fg='black',bg='#ffffff')
+        # self.sign_label.place(x=850, y=640)
 
-        self.signup_button_label = Button(self.window,text='REGISTER', font=("yu gothic ui", 10, "bold"), bg="#de1738", cursor="hand2",
-                                          borderwidth=0,fg='#ffffff', activebackground="#FFFFFF",width=8,height=2)
-        self.signup_button_label.place(x=980, y=630)
+        # self.signup_button_label = Button(self.window,text='REGISTER', font=("yu gothic ui", 10, "bold"), bg="#de1738", cursor="hand2",
+        #                                   borderwidth=0,fg='#ffffff', activebackground="#FFFFFF",width=8,height=2)
+        # self.signup_button_label.place(x=980, y=630)
 
       
     def go_to_doctor_login(self):

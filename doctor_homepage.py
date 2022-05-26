@@ -1,8 +1,10 @@
 from tkinter import *
 from PIL import ImageTk, Image
+from tkinter import messagebox
 import sql_test
 import doctor_login_page
 import doctor
+import Login
 
 
 class DoctorHomepage:
@@ -49,6 +51,11 @@ class DoctorHomepage:
                                       borderwidth=0,fg='#ffffff', activebackground="#FFFFFF",width=6,height=1,command= self.back)
     self.back_button.place(x=50, y=600)
 
+#======log out button======
+    self.logout_button = Button(self.frame,text='Log out', font=("yu gothic ui", 16, "bold"), bg="#4F77AA", cursor="hand2",
+                                      borderwidth=0,fg='#ffffff', activebackground="#FFFFFF",width=6,height=1,command= self.logout)
+    self.logout_button.place(x=870, y=600)
+
 
 #=====back function=========
   def back(self):
@@ -58,6 +65,13 @@ class DoctorHomepage:
       win.deiconify  
 
 
+#======log out function=========
+  def logout(self):
+      win =Toplevel()
+      Login.LoginPage(win)
+      self.window.withdraw()
+      win.deiconify  
+#===log in function ==========
   def ok(self):
     DoctorHomepage.entered_id =self.patient_id_entry.get()
     
@@ -76,7 +90,7 @@ class DoctorHomepage:
       win.deiconify  
       
     else:
-      pass
+      messagebox.showerror("Error!","Can't find the specified patient.")
 
 
     

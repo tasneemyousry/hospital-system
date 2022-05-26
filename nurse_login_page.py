@@ -1,9 +1,13 @@
 from tkinter import *
 from PIL import ImageTk, Image
+from tkinter import messagebox
+import sql_test
 import Login
 
 
 class NurseLoginPage:
+    entered_username=NONE
+    entered_pass=None
     def __init__(self, window):
         self.window = window
         self.window.geometry('1166x718')
@@ -80,9 +84,9 @@ class NurseLoginPage:
       
 
         # =========== Sign in ==================================================
-        self.signup_button_label = Button(self.window,text='SIGN IN', font=("yu gothic ui", 10, "bold"), bg="#de1738", cursor="hand2",
-                                          borderwidth=0,fg='#ffffff', activebackground="#FFFFFF",width=8,height=2)
-        self.signup_button_label.place(x=950, y=450)
+        self.signin_button_label = Button(self.window,text='SIGN IN', font=("yu gothic ui", 10, "bold"), bg="#de1738", cursor="hand2",
+                                          borderwidth=0,fg='#ffffff', activebackground="#FFFFFF",width=8,height=2,command=self.signIn)
+        self.signin_button_label.place(x=950, y=450)
 
 
         # ==============back to login button=====================
@@ -96,6 +100,29 @@ class NurseLoginPage:
         Login.LoginPage(win)
         self.window.withdraw()
         win.deiconify  
+
+    def signIn(self):
+        NurseLoginPage.entered_username =self.username_entry.get()
+        NurseLoginPage.entered_pass = self.password_entry.get()
+
+        find_user= ("""select staff_id, password
+        from staff
+        where staff_id ==? and password==?""")
+
+        sql_test.sqlBase.cursor.execute(find_user,[NurseLoginPage.entered_username,NurseLoginPage.entered_pass])
+
+        result= sql_test.sqlBase.cursor.fetchone()
+        
+        if result:
+            pass
+            # win =Toplevel()
+            # nurse_homepage.NurseHomepage(win)
+            # self.window.withdraw()
+            # win.deiconify  
+            
+        else:
+            messagebox.showerror("Can't login", "Invalid Credentials")
+    
 
 def nurse_login_page():
     window = Tk()

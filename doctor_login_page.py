@@ -1,5 +1,6 @@
 from tkinter import *
 from PIL import ImageTk, Image
+from tkinter import messagebox
 import Login
 import sql_test
 import doctor_homepage
@@ -53,7 +54,7 @@ class DoctorLoginPage:
 
 
         
-            # ========================================================================
+        # ========================================================================
         # ============================username====================================
         # ========================================================================
         self.username_label = Label(self.lgn_frame, text="ID", bg="#ffffff", fg="black",
@@ -84,9 +85,9 @@ class DoctorLoginPage:
       
 
         # =========== Sign in ==================================================
-        self.signup_button_label = Button(self.window,text='SIGN IN', font=("yu gothic ui", 10, "bold"), bg="#de1738", cursor="hand2",
+        self.signin_button_label = Button(self.window,text='SIGN IN', font=("yu gothic ui", 10, "bold"), bg="#de1738", cursor="hand2",
                                           borderwidth=0,fg='#ffffff', activebackground="#FFFFFF",width=8,height=2,command=self.signIn)
-        self.signup_button_label.place(x=950, y=450)
+        self.signin_button_label.place(x=950, y=450)
 
 
         # ==============back to login button=====================
@@ -125,7 +126,7 @@ class DoctorLoginPage:
             win.deiconify  
             
         else:
-            pass
+            messagebox.showerror("Can't login", "Invalid Credentials")
         
     
 def doctor_login_page():

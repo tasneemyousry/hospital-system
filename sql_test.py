@@ -26,49 +26,50 @@ class sqlBase():
 
 
             cursor.execute("""create table if not exists GIVE_DIAGNOSIS (
-            DOCTOR_ID            int                  not null,
-            PATIENT_ID           int                  not null,
-   DIAGNOSIS            text                 not null,
-   PRESCRIPTION         text                 not null,
-   DIAGNOSIS_DATE       datetime             not null,
-   constraint PK_GIVE_DIAGNOSIS primary key (DOCTOR_ID, PATIENT_ID, DIAGNOSIS_DATE),
-   constraint FK_GIVE_DIA_GIVE_DIAG_DOCTOR foreign key (DOCTOR_ID)
-      references DOCTOR (DOCTOR_ID)
-         on update cascade,
-    constraint FK_GIVE_DIA_GIVE_DIAG_PATIENT foreign key (PATIENT_ID)
-      references PATIENT (PATIENT_ID)
-         on update cascade on delete cascade
+               DOCTOR_ID            int                  not null,
+               PATIENT_ID           int                  not null,
+               DIAGNOSIS            text                 not null,
+               PRESCRIPTION         text                 not null,
+               DIAGNOSIS_DATE       datetime             not null,
+               constraint PK_GIVE_DIAGNOSIS primary key (DOCTOR_ID, PATIENT_ID, DIAGNOSIS_DATE),
+               constraint FK_GIVE_DIA_GIVE_DIAG_DOCTOR foreign key (DOCTOR_ID)
+                  references DOCTOR (DOCTOR_ID)
+                     on update cascade,
+               constraint FK_GIVE_DIA_GIVE_DIAG_PATIENT foreign key (PATIENT_ID)
+                  references PATIENT (PATIENT_ID)
+                     on update cascade on delete cascade
 
-)""")
+   )""")
 
             cursor.execute("""create table if not exists GUARDIANS (
-   PATIENT_ID           int                  not null,
-   NURSE_ID             int                  not null,
-   PHONE_NO             bigint               not null,
-   RELATIONSHIP_TO_PATIENT varchar(50)          null,
-   constraint PK_GUARDIANS primary key (PATIENT_ID, NURSE_ID),
-   constraint FK_GUARDIAN_CAN_CONTA_NURSE foreign key (NURSE_ID)
-      references NURSE (NURSE_ID)
-         on update cascade,
-    
-    constraint FK_GUARDIAN_HAS_CONTA_PATIENT foreign key (PATIENT_ID)
-      references PATIENT (PATIENT_ID)
-         on update cascade
+               PATIENT_ID           int                  not null,
+               NURSE_ID             int                  not null,
+               PHONE_NO             bigint               not null,
+               RELATIONSHIP_TO_PATIENT varchar(50)          null,
+               constraint PK_GUARDIANS primary key (PATIENT_ID, NURSE_ID),
+               constraint FK_GUARDIAN_CAN_CONTA_NURSE foreign key (NURSE_ID)
+                  references NURSE (NURSE_ID)
+                     on update cascade,
+               
+               constraint FK_GUARDIAN_HAS_CONTA_PATIENT foreign key (PATIENT_ID)
+                  references PATIENT (PATIENT_ID)
+                     on update cascade
 )""")
 
             cursor.execute("""create table if not exists HISTORY (
    PATIENT_ID           int                  not null,
-   NURSE_ID             int                  not null,
    PAST_DIAGNOSIS       text                 not null,
-   constraint PK_HISTORY primary key (PATIENT_ID, NURSE_ID),
-   constraint FK_HISTORY_HAS_PATIENT foreign key (PATIENT_ID)
+    constraint FK_HISTORY_HAS_PATIENT foreign key (PATIENT_ID)
       references PATIENT (PATIENT_ID)
-         on update cascade on delete cascade,
-    constraint FK_HISTORY_OBTAINS_NURSE foreign key (NURSE_ID)
-      references NURSE (NURSE_ID)
-         on update cascade
+         on update cascade on delete cascade
     
 )""")
+#   # NURSE_ID             int                  not null DEFAULT 0,
+  # constraint PK_HISTORY primary key (PATIENT_ID, NURSE_ID),
+  
+   #  constraint FK_HISTORY_OBTAINS_NURSE foreign key (NURSE_ID)
+   #    references NURSE (NURSE_ID)
+   #       on update cascade
 
             cursor.execute("""create table if not exists HOLDS (
    STAFF_ID             int                  not null,
@@ -156,14 +157,18 @@ class sqlBase():
             # cursor.execute("delete from staff")
       
 
-            # cursor.execute("""insert into staff(staff_id,password) values(7,"123")""")
-            # cursor.execute("""insert into nurse(nurse_id) values(7)""")
+            # cursor.execute("""insert into staff(staff_id,password) values(8,"123")""")
+            # cursor.execute("""insert into doctor(doctor_id) values(8)""")
 
 
             # cursor.execute("delete from patient")
-            # cursor.execute("insert into history(patient_id,nurse_id,past_diagnosis) values(2,7,'i was fine until now')")
+         #   cursor.execute("insert into history(patient_id,past_diagnosis) values(2,'i was fine until now')")
    
-            # conn.commit()
+            # # conn.commit()
+            # cursor.execute("delete from give_diagnosis")
+            # cursor.execute("delete from history")
+
+            # cursor.execute("""""")
 
 if __name__ =='__main__':
     sqlBase()

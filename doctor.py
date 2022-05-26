@@ -4,6 +4,7 @@ import doctor_homepage
 import add_diagnosis
 import edit_diagnosis
 import show_history
+import Login
 
 class Doctor:      
     def __init__(self, window):
@@ -46,11 +47,24 @@ class Doctor:
                                       borderwidth=0,fg='#ffffff', activebackground="#FFFFFF",width=6,height=1,command= self.back)
         self.back_button.place(x=50, y=600)
 
+    #======log out button======
+        self.logout_button = Button(self.frame,text='Log out', font=("yu gothic ui", 16, "bold"), bg="#4F77AA", cursor="hand2",
+                                      borderwidth=0,fg='#ffffff', activebackground="#FFFFFF",width=6,height=1,command= self.logout)
+        self.logout_button.place(x=870, y=600)
+
 
     #=====back function=========
     def back(self):
       win =Toplevel()
       doctor_homepage.DoctorHomepage(win)
+      self.window.withdraw()
+      win.deiconify  
+
+    
+  #======log out function=========
+    def logout(self):
+      win =Toplevel()
+      Login.LoginPage(win)
       self.window.withdraw()
       win.deiconify  
 
