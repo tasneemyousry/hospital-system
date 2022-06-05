@@ -109,5 +109,3 @@ def add_diagnosis():
     window.mainloop()
 
 
-if __name__ == '__main__':
-  add_diagnosis()

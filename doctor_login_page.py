@@ -133,7 +133,3 @@ def doctor_login_page():
     window = Tk()
     DoctorLoginPage(window)
     window.mainloop()
-
-
-if __name__ == '__main__':
-    doctor_login_page()

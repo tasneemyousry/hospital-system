@@ -1,10 +1,10 @@
-from email import message
 from tkinter import *
 from tkinter import messagebox
 from PIL import ImageTk, Image
 from tkinter import messagebox
 import Login
 import sql_test
+import staff_homepage
 
 
 class StaffLoginPage:
@@ -117,11 +117,10 @@ class StaffLoginPage:
         result= sql_test.sqlBase.cursor.fetchone()
         
         if result:
-            pass
-            # win =Toplevel()
-            # nurse_homepage.NurseHomepage(win)
-            # self.window.withdraw()
-            # win.deiconify  
+            win =Toplevel()
+            staff_homepage.StaffHomePage(win)
+            self.window.withdraw()
+            win.deiconify  
             
         else:
             messagebox.showerror("Can't login", "Invalid Credentials")
@@ -130,7 +129,6 @@ def staff_login_page():
     window = Tk()
     StaffLoginPage(window)
     window.mainloop()
-
-
+    
 if __name__ == '__main__':
     staff_login_page()

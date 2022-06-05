@@ -98,6 +98,5 @@ def show_history():
     ShowHistory(window)
     window.mainloop()
 
-
 if __name__ == '__main__':
-  show_history()
+    show_history()

@@ -154,7 +154,9 @@ class sqlBase():
 
 
 
+
             # cursor.execute("delete from staff")
+            
       
 
             # cursor.execute("""insert into staff(staff_id,password) values(8,"123")""")
@@ -170,6 +172,5 @@ class sqlBase():
 
             # cursor.execute("""""")
 
-if __name__ =='__main__':
-    sqlBase()
+
     

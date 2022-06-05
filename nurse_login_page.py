@@ -130,5 +130,3 @@ def nurse_login_page():
     window.mainloop()
 
 
-if __name__ == '__main__':
-    nurse_login_page()

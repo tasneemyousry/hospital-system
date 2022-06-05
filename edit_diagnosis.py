@@ -132,5 +132,3 @@ def edit_diagnosis():
 
 
 
-if __name__ == '__main__':
-  edit_diagnosis()
