@@ -3,6 +3,7 @@ from PIL import ImageTk, Image
 from tkinter import messagebox
 import sql_test
 import Login
+import nurse_homepage
 
 
 class NurseLoginPage:
@@ -76,7 +77,7 @@ class NurseLoginPage:
         self.password_label.place(x=750, y=270)
 
         self.password_entry = Entry(self.lgn_frame, highlightthickness=0, relief=FLAT, bg="#ffffff", fg="black",
-                                    font=("Times New Roman", 13, "bold"))
+                                    show='*',font=("Times New Roman", 13, "bold"))
         self.password_entry.place(x=750, y=300, width=200)
 
         self.password_line = Canvas(self.lgn_frame, width=300, height=2.0, bg="#d3d3d3", highlightthickness=0)
@@ -105,9 +106,12 @@ class NurseLoginPage:
         NurseLoginPage.entered_username =self.username_entry.get()
         NurseLoginPage.entered_pass = self.password_entry.get()
 
-        find_user= ("""select staff_id, password
-        from staff
-        where staff_id ==? and password==?""")
+        find_user= ("""select staff_id,password 
+        from (select staff.'staff_id', staff.'password'
+        from staff,nurse
+        where staff.'staff_id'=nurse.'nurse_id' )
+        where staff_id ==? and password==?
+        """)
 
         sql_test.sqlBase.cursor.execute(find_user,[NurseLoginPage.entered_username,NurseLoginPage.entered_pass])
 
@@ -115,10 +119,10 @@ class NurseLoginPage:
         
         if result:
             pass
-            # win =Toplevel()
-            # nurse_homepage.NurseHomepage(win)
-            # self.window.withdraw()
-            # win.deiconify  
+            win =Toplevel()
+            nurse_homepage.NurseHomepage(win)
+            self.window.withdraw()
+            win.deiconify  
             
         else:
             messagebox.showerror("Can't login", "Invalid Credentials")
@@ -130,3 +134,5 @@ def nurse_login_page():
     window.mainloop()
 
 
+if __name__ == '__main__':
+    nurse_login_page()
